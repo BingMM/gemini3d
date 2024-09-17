@@ -201,13 +201,13 @@ contains
     ! set full 2D target coordinates along axes 2,3 - these are the only targets we have for precipitation data
     do ix3=1,x%lx3
       do ix2=1,x%lx2
-        ix1ref = minloc(abs(x%rall(:,ix2,ix3) - Re - 300e3_wp), dim=1)    ! includes ghost cells if x%rall has
-        ix1ref=ix1ref-ix1offset
+        !ix1ref = minloc(abs(x%rall(:,ix2,ix3) - Re - 300e3_wp), dim=1)    ! includes ghost cells if x%rall has
+        !ix1ref=ix1ref-ix1offset
         iflat=(ix3-1)*x%lx2+ix2
-        !self%coord2iax23(iflat)=x%phi(x%lx1,ix2,ix3)*180._wp/pi
-        !self%coord3iax23(iflat)=90._wp - x%theta(x%lx1,ix2,ix3)*180._wp/pi
-        self%coord2iax23(iflat)=x%phi(ix1ref,ix2,ix3)*180._wp/pi
-        self%coord3iax23(iflat)=90._wp - x%theta(ix1ref,ix2,ix3)*180._wp/pi
+        self%coord2iax23(iflat)=x%phi(x%lx1,ix2,ix3)*180._wp/pi
+        self%coord3iax23(iflat)=90._wp - x%theta(x%lx1,ix2,ix3)*180._wp/pi
+        !self%coord2iax23(iflat)=x%phi(ix1ref,ix2,ix3)*180._wp/pi
+        !self%coord3iax23(iflat)=90._wp - x%theta(ix1ref,ix2,ix3)*180._wp/pi
       end do
     end do
 
