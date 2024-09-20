@@ -193,17 +193,19 @@ contains
     class(precipdata), intent(inout) :: self
     type(gemini_cfg), intent(in) :: cfg     ! presently not used but possibly eventually?
     class(curvmesh), intent(in) :: x
-    integer :: ix2,ix3,iflat
+    integer :: ix2,ix3,iflat,ix1ref
 
     iflat = cfg%potsolve
     !! avoid unused argument warning
 
     ! set full 2D target coordinates along axes 2,3 - these are the only targets we have for precipitation data
+    ! ix1ref = x%lx1
+    ix1ref = 1
     do ix3=1,x%lx3
       do ix2=1,x%lx2
         iflat=(ix3-1)*x%lx2+ix2
-        self%coord2iax23(iflat)=x%phi(x%lx1,ix2,ix3)*180._wp/pi
-        self%coord3iax23(iflat)=90._wp - x%theta(x%lx1,ix2,ix3)*180._wp/pi
+        self%coord2iax23(iflat)=x%phi(ix1ref,ix2,ix3)*180._wp/pi
+        self%coord3iax23(iflat)=90._wp - x%theta(ix1ref,ix2,ix3)*180._wp/pi
       end do
     end do
 
